@@ -29,6 +29,9 @@ public class CheckWordActivity extends Activity {
 
     // 日本語訳TextViewインスタンス
     private TextView tvJapaneseword;
+    
+    // 補足TextViewインスタンス
+    private TextView tvExtras;
 
     // ボタンのタグ文字列定義
     // 「次へ」ボタンタグ
@@ -79,9 +82,11 @@ public class CheckWordActivity extends Activity {
         if (itr.hasNext()) {
             tvEnglishword = (TextView) findViewById(R.id.tv_englishword);
             tvJapaneseword = (TextView) findViewById(R.id.tv_japaneseword);
+            tvExtras = (TextView) findViewById(R.id.tv_extras);
             WordBean wbn = itr.next();
             tvEnglishword.setText(wbn.getEnglishword());
             tvJapaneseword.setText(wbn.getJapaneseword());
+            tvExtras.setText(wbn.getExtras());
             // 登録された単語がない場合、メッセージをトースト表示
         } else {
             Toast.makeText(CheckWordActivity.this, R.string.noword_input_text,
@@ -102,6 +107,7 @@ public class CheckWordActivity extends Activity {
                     WordBean wbn = itr.next();
                     tvEnglishword.setText(wbn.getEnglishword());
                     tvJapaneseword.setText(wbn.getJapaneseword());
+                    tvExtras.setText(wbn.getExtras());
                 } else {
                     Toast.makeText(CheckWordActivity.this,
                         R.string.noword_next_text, Toast.LENGTH_SHORT).show();
@@ -112,6 +118,7 @@ public class CheckWordActivity extends Activity {
                     WordBean wbn = itr.previous();
                     tvEnglishword.setText(wbn.getEnglishword());
                     tvJapaneseword.setText(wbn.getJapaneseword());
+                    tvExtras.setText(wbn.getExtras());
                 } else {
                     Toast.makeText(CheckWordActivity.this,
                         R.string.noword_back_text, Toast.LENGTH_SHORT).show();

@@ -45,6 +45,24 @@
   <!-- 日本語訳入力エリア -->
   <EditText 
     android:id="@+id/et_japaneseword"
+    android:inputType="text"
+    android:singleLine="true"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginBottom="20dp" />
+  
+    <!-- 補足入力エリア用テキスト -->
+  <TextView 
+    android:text="@string/tv_extras"
+    android:textSize="20sp"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:layout_marginBottom="5dp"/>
+  
+  <!-- 補足入力エリア -->
+  <EditText 
+    android:id="@+id/et_extras"
+    android:inputType="text"
     android:singleLine="true"
     android:layout_width="match_parent"
     android:layout_height="50dp"
@@ -68,7 +86,14 @@
     <Button 
       android:id="@+id/btn_save"
       android:text="@string/btn_save"
-     android:layout_width="100dp"
+      android:layout_width="100dp"
+      android:layout_height="50dp"/>
+    
+        <!-- 削除ボタン -->
+    <Button 
+      android:id="@+id/btn_deleteall"
+      android:text="@string/btn_deleteall"
+      android:layout_width="100dp"
       android:layout_height="50dp"/>
    
   </LinearLayout>

@@ -20,6 +20,8 @@ public class AddWordActivity extends Activity {
     static final String BTN_SAVE = "btnSave";
     // 「トップへ」ボタンタグ
     static final String BTN_TOP = "btnTop";
+    // 「全て削除」ボタンタグ
+    static final String BTN_DELETE = "btndelete";
 
     // onCreateメソッド(画面初期表示イベント)
     @Override
@@ -37,6 +39,11 @@ public class AddWordActivity extends Activity {
         Button btnTopPage = (Button) findViewById(R.id.btn_toppage);
         btnTopPage.setTag(BTN_TOP);
         btnTopPage.setOnClickListener(buttonClickListener);
+        
+        // 「全て削除」ボタンにリスナー設定
+        Button btnDelete = (Button) findViewById(R.id.btn_deleteall);
+        btnDelete.setTag(BTN_DELETE);
+        btnDelete.setOnClickListener(buttonClickListener);
 
         // DBUtilインスタンス生成
         dbUtil = new EnglishWordBookDbUtil(this);
@@ -57,6 +64,9 @@ public class AddWordActivity extends Activity {
             } else if (button.getTag().equals(BTN_TOP)) {
                 // 画面クローズ
                 finish();
+                // 「全て削除」ボタンの場合、DB削除
+            } else if (button.getTag().equals(BTN_DELETE)){
+            	
             }
         }
     };
@@ -90,6 +100,8 @@ public class AddWordActivity extends Activity {
                     (EditText) findViewById(R.id.et_englishword);
                 EditText etJapaneseword =
                     (EditText) findViewById(R.id.et_japaneseword);
+                EditText etExtras = 
+                	(EditText) findViewById(R.id.et_extras);
                 // 未入力の場合、エラーメッセージをトーストで表示
                 if (etEnglishword.getText().toString().equals("")
                     || etJapaneseword.getText().toString().equals("")) {
@@ -102,10 +114,14 @@ public class AddWordActivity extends Activity {
                 // WordBeanインスタンス生成
                 WordBean wbn =
                     new WordBean(etEnglishword.getText().toString(),
-                        etJapaneseword.getText().toString());
+                        etJapaneseword.getText().toString(),
+                        etExtras.getText().toString());
 
                 // DBへ単語情報を登録
                 dbUtil.addWord(wbn);
+                
+                // 登録完了メッセージ
+                Toast.makeText(AddWordActivity.this, "登録しました！", Toast.LENGTH_SHORT).show();
             }
         };
 

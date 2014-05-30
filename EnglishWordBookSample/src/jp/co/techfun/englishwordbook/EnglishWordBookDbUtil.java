@@ -30,6 +30,8 @@ public class EnglishWordBookDbUtil {
     private static final String C_ENGLISH_WORD = "englishword";
     // カラム名(日本語訳)
     private static final String C_JAPANESE_WORD = "japaneseword";
+    // カラム名（補足）
+    private static final String C_EXTRAS = "extras";
 
     // コンストラクタ
     public EnglishWordBookDbUtil(Context con) {
@@ -60,7 +62,9 @@ public class EnglishWordBookDbUtil {
             // 英単語
             sql.append(C_ENGLISH_WORD + " text not null,");
             // 日本語訳
-            sql.append(C_JAPANESE_WORD + " text not null");
+            sql.append(C_JAPANESE_WORD + " text not null,");
+            // 補足
+            sql.append(C_EXTRAS + " text not null");
             sql.append(")");
 
             // SQL実行
@@ -83,10 +87,13 @@ public class EnglishWordBookDbUtil {
             sql.append("insert into " + TABLE_NAME + " values (");
             // 通番(自動採番)
             sql.append("null,");
-            // 緯度
+            // 英単語
             sql.append("'" + wbn.getEnglishword() + "',");
-            // コメント
-            sql.append("'" + wbn.getJapaneseword() + "'");
+            // 日本語訳
+            sql.append("'" + wbn.getJapaneseword() + "',");
+            // 補足
+            sql.append("'" + wbn.getExtras() + "'");
+            
             sql.append(")");
 
             // SQL実行
@@ -110,7 +117,7 @@ public class EnglishWordBookDbUtil {
             db = helper.getWritableDatabase();
 
             // テーブルから取得する列名を定義
-            String[] columns = { C_ENGLISH_WORD, C_JAPANESE_WORD };
+            String[] columns = { C_ENGLISH_WORD, C_JAPANESE_WORD, C_EXTRAS };
 
             // データ取得
             cursor =
@@ -120,7 +127,7 @@ public class EnglishWordBookDbUtil {
             // 取得したデータをリストに格納
             while (cursor.moveToNext()) {
                 WordBean wbn =
-                    new WordBean(cursor.getString(0), cursor.getString(1));
+                    new WordBean(cursor.getString(0), cursor.getString(1),cursor.getString(2));
                 wordList.add(wbn);
             }
         } catch (Throwable th) {
@@ -135,4 +142,5 @@ public class EnglishWordBookDbUtil {
         // 単語リストを返す
         return wordList;
     }
+    
 }

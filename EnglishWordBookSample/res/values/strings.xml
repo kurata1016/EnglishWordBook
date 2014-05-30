@@ -11,6 +11,7 @@
     <string name="tv_checkword_title">英単語帳</string>
     <string name="tv_check_englishword">英単語の日本語訳は？</string>
     <string name="tv_check_japaneseword">日本語訳</string>
+    <string name="tv_extras">補足</string>
     
     <string name="btn_checkword">英単語帳を開く</string>
     <string name="btn_addword">単語を登録する</string>
@@ -22,6 +23,7 @@
     <string name="btn_startcheck">START</string>
     <string name="btn_correctpronounce">正しい発音</string>
     <string name="btn_checkwordpage">英単語帳へ</string>
+    <string name="btn_deleteall">全て削除</string>
     
     <string name="add_confirm_text">登録確認</string>
     <string name="confirm_message_text">登録してよろしいですか。</string>
